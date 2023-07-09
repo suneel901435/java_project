@@ -1,0 +1,148 @@
+// parent class or base class
+
+import java.util.Scanner;
+public class Car {
+	static Scanner sc=new Scanner(System.in);
+	static int rto = 113990;
+	static int insurance = 47300;
+	static int additional = 15000;
+	static int tcs=11000;
+	public void Fun (int amount)
+	{
+		int total=0;
+		System.out.println("Do you need insurance(yes/no)");
+		String s1=sc.next();
+		System.out.println("Do you need Additional accories(yes/no)");
+		String s2=sc.next();
+		if (s1.equals("yes") && s2.equals("yes"))
+		{
+			System.out.println("Dealer discount(percentage/rupees)");
+			String dis=sc.next();
+			int discount=Discount(dis,amount);
+			total = rto +amount+additional+tcs+insurance-discount;
+			System.out.println(total);
+		}
+		else if (s1.equals("no") && s2.equals("no"))
+		{
+			total = rto +amount+tcs;
+			System.out.println(total);
+		}
+		else if (s1.equals("yes") && s2.equals("no"))
+		{
+			System.out.println("Dealer discount");
+			String dis=sc.next();
+			int discount=Discount(dis,amount);
+			total = rto +amount+insurance+tcs-discount;
+			System.out.println(total);
+		}
+		else if (s2.equals("yes") && s1.equals("no"))
+		{
+			System.out.println("Dealer discount");
+			String dis=sc.next();
+			int discount=Discount(dis,amount);
+			total = rto +amount+additional+tcs-discount;
+			System.out.println(total);
+		}
+	}
+	public int Discount (String value,int amount)
+	{
+		if (value.equals("percentage"))
+		{
+			int howMuch=sc.nextInt();
+			//System.out.println((amount*howMuch)/100);
+			return (int)((amount*howMuch)/100);
+		}
+		else if(value.equals("rupees"))
+		{
+			int howMuch=sc.nextInt();
+			return howMuch;
+		}
+		else
+			return -1;
+	}
+	
+}
+
+
+// child class
+
+import java.util.Scanner;
+public class Sun extends Car{
+
+public static void main(String[] args) {
+		Sun sun=new Sun();
+		Scanner scanner =new Scanner(System.in);
+		System.out.println("car model		cost");
+		System.out.println("polo trendline		8.70lakh");
+		System.out.println("polo highline		10.09lakh");
+		System.out.println("virtus Trendline		11.05lakh");
+		System.out.println("virtus highline			13.08lakh");
+		System.out.println("taihun trendline		14.89");
+		System.out.println("taigun highline			15.42");
+		System.out.println("taigun topline			17.71lack");
+		
+		System.out.print("Select car model:");
+		String s=scanner.nextLine();
+		switch(s)
+		{
+		case "polo trendline":
+			sun.Fun (870000);
+			break;
+		case "polo highline":
+			sun.Fun(1009000);
+			break;
+		case "virtus Trendline":
+			sun.Fun(1105000);
+			break;
+		case "virtus highline":
+			sun.Fun(1308000);
+			break;
+		case "taihun trendline":
+			sun.Fun(1489000);
+			break;
+		case "taigun highline":
+			sun.Fun(1542000);
+			break;
+		case "taigun topline":
+			sun.Fun(1771000);
+			break;
+		default:
+			System.out.println("sorry choose any of the above");
+		}
+
+	}
+
+}
+
+
+output:
+
+Sample Input 1:
+Select car model: Virtus Highline
+Do you need Insurance: yes
+Do you need Additional Accessories: no
+Dealer discount: 2%
+  
+Output:
+Total cost 14,54,130 (Virtus Highline 13,08,000 + 1,13,990(RTO) + 47,300(Insurance) +
+11,000(TCS) - 26160(Dealer discount))
+  
+Sample Input 2:
+Select car model: Taigun Topline
+Do you need Insurance: yes
+Do you need Additional Accessories: yes
+Dealer discount: 20,000
+  
+Output:
+Total cost 19,38,290 (Taigun Topline 17,71,000 + 1,13,990(RTO) + 47,300(Insurance) +
+11,000(TCS) + 15,000(Additional Accessories) - 20,000(Dealer discount))
+  
+Sample Input 3:
+Select car model: Polo Trendline
+Do you need Insurance: no
+Do you need Additional Accessories: no
+Dealer discount: 0
+  
+Output:
+Total cost 9,94,990 (Polo Trendline 8,70,000 + 1,13,990(RTO) + 0(Insurance) + 11,000(TCS) +
+0(Additional Accessories) - 0(Dealer discount)
