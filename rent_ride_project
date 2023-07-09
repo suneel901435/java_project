@@ -1,0 +1,55 @@
+Solution:
+
+import java.util.Scanner;
+public class Ride {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc=new Scanner(System.in);
+		String[] Drivers= {"A","B","C","D","E"};
+		String[] carModel= {"sedan","hatchback","5seater","sedan","hatchback"};
+		double[] rating= {4,4.3,4.8,4.1,4.7};
+		int[] dfc= {500,1000,200,700,430};
+		double crd=sc.nextDouble();
+		System.out.print("car request is:");
+		String model=sc.next();
+		int distance=99999;
+		int driver=0;
+		for(int i=0;i < Drivers.length;i++)
+		{
+			if (carModel[i].equalsIgnoreCase(model))
+			{
+				System.out.println("suneel");
+				if(rating[i] >= 4.0)
+				{
+					if (dfc[i] <= distance)
+					{
+						distance = dfc[i];
+						
+						driver=i;
+					}
+				}
+			}
+		}
+		System.out.println(Drivers[driver]+" will go for the ride by charging "+crd*8);
+	}
+
+}
+
+
+output:
+
+Sample Input:-
+Customer Ride Distance: 60km
+Car Requested: 5 seater
+Destination: Delhi
+List of with Details:
+Driver   Car Model     Rating     DFC     PReffDestination
+A         5 Seater       4       500m     Gurgaon, Noida, Delhi
+B         HatchBack       4.3     1km     Gurgaon
+C         5 Seater       4.8     200m     Noida
+D         Sedan           4.1     700m     Noida
+E         5 Seater       4.7     430m     Delhi
+Sample Output:
+Driver E will take you to the destination
+Your charge will be Rs 480 (60*8)
